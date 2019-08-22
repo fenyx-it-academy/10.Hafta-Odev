@@ -1,4 +1,4 @@
-''' bu kod amiral batti oyununun tablosudur '''
+''' bu kod amiral batti oyununun fonksiyonlaridir '''
 
 #tablonun her bir kutucugu ikili sayi listesinden olusuyor.tum kutucuklar tek bir liste icinde 00 01 43 56..gibi
 def tabloilk():
