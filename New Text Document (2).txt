@@ -1,0 +1,164 @@
+import random
+
+def dortbirimlik():
+
+    liste = list(map(lambda x: x, range(1, 8)))
+    liste1 = [[[a, b],[a,b+1],[a,b+2],[a,b+3]] for a in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"] for b in liste]
+    liste2=[["A","B","C","D"],["B","C","D","E"],["C","D","E","F"],["D","E","F","G"],["E","F","G","H"],["F","G","H","J"],["G","H","J","K"]]
+    liste3=[]
+    for i in liste2:
+        for j in i:
+            liste3.append([j,1])
+        for j in i:
+            liste3.append([j,2])
+        for j in i:
+            liste3.append([j,3])
+        for j in i:
+            liste3.append([j,4])
+        for j in i:
+            liste3.append([j,5])
+        for j in i:
+            liste3.append([j,6])
+        for j in i:
+            liste3.append([j,7])
+        for j in i:
+            liste3.append([j,8])
+        for j in i:
+            liste3.append([j,9])
+        for j in i:
+            liste3.append([j,10])
+    liste4=[[liste3[a],liste3[a+1],liste3[a+2],liste3[a+3]] for a in list(map(lambda x:4*x, range(0,70)))]
+    liste5=liste1+liste4
+    return liste5
+
+def ucbirimlik():
+    liste = list(map(lambda x: x, range(1, 9)))
+    liste1 = [[[a, b], [a, b + 1], [a, b + 2]] for a in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]
+              for b in liste]
+    liste2 = [["A", "B", "C"], ["B", "C", "D"], ["C", "D", "E"], ["D", "E", "F"],
+              ["E", "F", "G"], ["F", "G", "H"], ["G", "H", "J"],["H","J","K"]]
+    liste3 = []
+    for i in liste2:
+        for j in i:
+            liste3.append([j, 1])
+        for j in i:
+            liste3.append([j, 2])
+        for j in i:
+            liste3.append([j, 3])
+        for j in i:
+            liste3.append([j, 4])
+        for j in i:
+            liste3.append([j, 5])
+        for j in i:
+            liste3.append([j, 6])
+        for j in i:
+            liste3.append([j, 7])
+        for j in i:
+            liste3.append([j, 8])
+        for j in i:
+            liste3.append([j, 9])
+        for j in i:
+            liste3.append([j, 10])
+    liste4 = [[liste3[a], liste3[a + 1], liste3[a + 2]] for a in
+              list(map(lambda x: 3 * x, range(0, 80)))]
+    liste5 = liste1 + liste4
+    return liste5
+
+def ikibirimlik():
+    liste = list(map(lambda x: x, range(1, 10)))
+    liste1 = [[[a, b], [a, b + 1]] for a in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]
+              for b in liste]
+    liste2 = [["A", "B"], ["B", "C"], ["C", "D"], ["D", "E"],
+              ["E", "F"], ["F", "G"], ["G", "H"], ["H", "J"],["J","K"]]
+    liste3 = []
+    for i in liste2:
+        for j in i:
+            liste3.append([j, 1])
+        for j in i:
+            liste3.append([j, 2])
+        for j in i:
+            liste3.append([j, 3])
+        for j in i:
+            liste3.append([j, 4])
+        for j in i:
+            liste3.append([j, 5])
+        for j in i:
+            liste3.append([j, 6])
+        for j in i:
+            liste3.append([j, 7])
+        for j in i:
+            liste3.append([j, 8])
+        for j in i:
+            liste3.append([j, 9])
+        for j in i:
+            liste3.append([j, 10])
+    liste4 = [[liste3[a], liste3[a + 1]] for a in
+              list(map(lambda x: 2 * x, range(0, 90)))]
+    liste5 = liste1 + liste4
+    return liste5
+
+
+def birbirimlik():
+    liste = list(map(lambda x: x, range(1, 11)))
+    liste1 = [[a, b] for a in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]
+              for b in liste]
+    return liste1
+
+def yerler():
+    dortluk=random.sample(dortbirimlik(),2)
+    dortluk=[dortluk[0][0],dortluk[0][1],dortluk[0][2],dortluk[0][3],dortluk[1][0],dortluk[1][1],dortluk[1][2],dortluk[1][3]]
+    while True:
+        ucluk=random.sample(ucbirimlik(),2)
+        ikilik=random.sample(ikibirimlik(),2)
+        birlik=random.sample(birbirimlik(),2)
+        ucluk = [ucluk[0][0], ucluk[0][1], ucluk[0][2], ucluk[1][0],ucluk[1][1], ucluk[1][2]]
+        ikilik=[ikilik[0][0], ikilik[0][1], ikilik[1][0],ikilik[1][1]]
+        if ucluk in dortluk or ikilik in dortluk or ikilik in ucluk or birlik in ikilik or birlik in ikilik or birlik in ucluk or birlik in dortluk:
+            continue
+        else:
+            break
+    return dortluk,ucluk,ikilik,birlik
+print(yerler())
+
+
+
+
+def tahta():
+    tahta="""                1   2   3   4   5   6   7   8   9   10
+             A  __  __  __  __  __  __  __  __  __  __
+             B  __  __  __  __  __  __  __  __  __  __
+             C  __  __  __  __  __  __  __  __  __  __
+             D  __  __  __  __  __  __  __  __  __  __
+             E  __  __  __  __  __  __  __  __  __  __
+             F  __  __  __  __  __  __  __  __  __  __
+             G  __  __  __  __  __  __  __  __  __  __
+             H  __  __  __  __  __  __  __  __  __  __
+             J  __  __  __  __  __  __  __  __  __  __
+             K  __  __  __  __  __  __  __  __  __  __"""
+    return print(tahta)
+def giriskontrol():
+    liste2 = []
+    while True:
+        tahta()
+        harf = input("Lutfen dikey ekseni seciniz:\t")
+        harf = harf.upper()
+        sayi = int(input("lutfen yatay ekseni seciniz:\t"))
+        if sayi in range(1, 11) and harf in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]:
+            liste2.append([harf, sayi])
+            print(liste2)
+            continue
+        else:
+            print("yanlis deger girdiniz lutfen tekrar giriniz:\t")
+            continue
+
+
+def liste():
+    liste = list(map(lambda x: x, range(1, 11)))
+    liste1 = [[a, b] for a in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"] for b in liste]
+    return print(liste1)
+
+
+
+liste()
+giriskontrol()
+
