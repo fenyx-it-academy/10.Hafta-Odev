@@ -253,6 +253,15 @@ def giriskontrol():
         time.sleep(2)
         harf = input("Lutfen oynamak istediginiz yeri 'D6' seklinde seciniz:\t")
         harf=harf.upper()
+        if len(harf)>2:
+            if harf[2] in ["0"]:
+                pass
+            else:
+                print("yanlis bir deger girdiniz lutfen tekrar giriniz")
+                print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+                continue
+        else:
+            pass
         if harf[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] and harf[0] in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]:
             deger=tahtasozluk.get(harf)
             if deger in liste1:
