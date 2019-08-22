@@ -12,7 +12,6 @@ aciklama=""" Bu bir amiral batti oyunu olup:
        Ayrica her deneme oncesinde 5 sn kadar bekleme suresi bulunmakta olup 
        bu sureye dikkat etmeniz de gerekmektedir.
        Oyunda 25 yanlis yapma hakkina sahipsiniz.
-
 """
 print(aciklama)
 
@@ -225,22 +224,110 @@ def ikilik():
 def birlik():
     liste1 = list(map(lambda x: x, range(0, 100)))
     return liste1
-def yerler():
-    dortluk1=random.sample(dortluk(),2)
+def dortlukliste():
+    dortluk1=random.sample(dortluk(),1)
+    dortluk1=[dortluk1[0][0],dortluk1[0][1],dortluk1[0][2],dortluk1[0][3]]
+
     while True:
-        ucluk1=random.sample(ucluk(),2)
-        ikilik1=random.sample(ikilik(),2)
-        birlik1=random.sample(birlik(),2)
+        dortluk2=random.sample(dortluk(),1)
+        dortluk2=[dortluk2[0][0],dortluk2[0][1],dortluk2[0][2],dortluk2[0][3]]
+        sayac = 0
+        for i in dortluk2:
+            sayac += 1
+            if i in dortluk1:
+                break
+            else:
+                if sayac == 4:
+                    dortlukson=dortluk1+dortluk2
+                    return dortlukson
+        continue
+dortlukson=dortlukliste()
 
-        if ucluk1 in dortluk1 or ikilik1 in dortluk1 or ikilik1 in ucluk1 or birlik1 in ikilik1 or birlik1 in ikilik1 or birlik1 in ucluk1 or birlik1 in dortluk1:
-            continue
-        else:
-            break
-    return dortluk1,ucluk1,ikilik1,birlik1
+def uclukliste1():
+    global dortlukson
+    while True:
+        ucluk1 = random.sample(ucluk(), 1)
+        ucluk1 = [ucluk1[0][0], ucluk1[0][1], ucluk1[0][2]]
+        sayac = 0
+        for i in ucluk1:
+            sayac += 1
+            if i in dortlukson:
+                break
+            else:
+                if sayac == 3:
+                    dortluksonucluk1 = dortlukson+ ucluk1
+                    return dortluksonucluk1
+        continue
+dortluksonucluk1=uclukliste1()
 
-liste=yerler()
-liste1=[liste[0][0][0],liste[0][0][1],liste[0][0][2],liste[0][0][3],liste[0][1][0],liste[0][1][1],liste[0][1][2],liste[0][1][3],liste[1][0][0],liste[1][0][1],liste[1][0][2],liste[1][1][0],liste[1][1][1],liste[1][1][2],liste[2][0][0],liste[2][0][1],liste[2][1][0],liste[2][1][1],liste[3][0],liste[3][1]]
+def dortlukucluk():
+    global dortluksonucluk1
+    while True:
+        ucluk2 = random.sample(ucluk(), 1)
+        ucluk2 = [ucluk2[0][0], ucluk2[0][1], ucluk2[0][2]]
+        sayac = 0
+        for i in ucluk2:
+            sayac += 1
+            if i in dortluksonucluk1:
+                break
+            else:
+                if sayac == 3:
+                    dortluksonucluk = dortluksonucluk1 + ucluk2
+                    return dortluksonucluk
+        continue
+dortluksonucluk=dortlukucluk()
 
+def dortlukuclukikilik1():
+    while True:
+        ikilik1 = random.sample(ikilik(), 1)
+        ikilik1 = [ikilik1[0][0], ikilik1[0][1]]
+        sayac = 0
+        for i in ikilik1:
+            sayac += 1
+            if i in dortluksonucluk:
+                break
+            else:
+                if sayac == 2:
+                    dortlukuclukikilikilk = dortluksonucluk + ikilik1
+                    return dortlukuclukikilikilk
+        continue
+dortlukuclukikilikilk=dortlukuclukikilik1()
+
+def dortlukuclukikilik():
+    global dortlukuclukikilikilk
+    while True:
+        ikilik2 = random.sample(ikilik(), 1)
+        ikilik2 = [ikilik2[0][0], ikilik2[0][1]]
+        sayac = 0
+        for i in ikilik2:
+            sayac += 1
+            if i in dortlukuclukikilikilk:
+                break
+            else:
+                if sayac == 2:
+                    dortlukuclukikilik = dortlukuclukikilikilk + ikilik2
+                    return dortlukuclukikilik
+        continue
+dortlukuclukikilik=dortlukuclukikilik()
+
+def gemikonumlar():
+    global dortlukuclukikilik
+    while True:
+        birlikler = random.sample(birlik(), 2)
+        sayac = 0
+        for i in birlikler:
+            sayac += 1
+            if i in dortlukuclukikilik:
+                break
+            else:
+                if sayac == 2:
+                    dortlukuclukikilikbirlik = dortlukuclukikilik + birlikler
+                    return dortlukuclukikilikbirlik
+        continue
+
+liste1=gemikonumlar()
+
+liste1.sort()
 def giriskontrol():
     global liste1
     liste2 = []
@@ -253,6 +340,7 @@ def giriskontrol():
         time.sleep(2)
         harf = input("Lutfen oynamak istediginiz yeri 'D6' seklinde seciniz:\t")
         harf=harf.upper()
+
         if len(harf)>2:
             if harf[2] in ["0"]:
                 pass
@@ -260,6 +348,10 @@ def giriskontrol():
                 print("yanlis bir deger girdiniz lutfen tekrar giriniz")
                 print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
                 continue
+        elif len(harf)<2:
+            print("yanlis bir deger girdiniz lutfen tekrar giriniz")
+            print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+            continue
         else:
             pass
         if harf[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] and harf[0] in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]:
