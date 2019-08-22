@@ -250,7 +250,7 @@ def giriskontrol():
     while sayac<25:
         tahta()
         print("Lutfen giris yapmadan once 5 saniye bekleyiniz!!!!!! ")
-        time.sleep(5)
+        time.sleep(2)
         harf = input("Lutfen oynamak istediginiz yeri 'D6' seklinde seciniz:\t")
         harf=harf.upper()
         if harf[1] in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] and harf[0] in ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K"]:
