@@ -55,7 +55,9 @@ try:
         a = randomIndex(10)  # ilk deger 9a kadar rakam alabilecegi icin range siniri 10
         b = randomIndex(7)  # ikinci index 6ya kadar deger alabilecegi icin range siniri 7
         # gemi yatay olarak yerlesecegi icin ikinci indexi max 6dan baslayabilir
-        if [a, b] and [a, b + 1] and [a, b + 2] and [a, b + 3] not in doluOlanlar:
+    
+        if [a, b] not in doluOlanlar and [a, b + 1] not in doluOlanlar and \
+                [a, b + 2] not in doluOlanlar and [a, b + 3] not in doluOlanlar:
             while i < 4:
                 doluOlanlar.append([a, b + i])
                 i += 1
@@ -63,11 +65,14 @@ try:
             dortBirimlikGemi()
 
 
+
     def ucBirimlikGemi():
         i = 0
         a = randomIndex(10)
         b = randomIndex(8)
-        if [a, b] and [a, b + 1] and [a, b + 2] not in doluOlanlar:
+
+        if [a, b] not in doluOlanlar and [a, b + 1] not in doluOlanlar\
+                and [a, b + 2] not in doluOlanlar:
             # random olarak yerlestirilen uc birimlik gemi
             # tabloda mevcut mu degil mi
             while i < 3:
@@ -76,11 +81,13 @@ try:
         else:
             ucBirimlikGemi()
 
+
     def ikiBirimlikGemi():
         i = 0
         a = randomIndex(10)
         b = randomIndex(9)
-        if [a, b] and [a, b + 1] not in doluOlanlar:
+
+        if [a, b] not in doluOlanlar and [a, b + 1] not in doluOlanlar:
             # random olarak yerlestirilen iki birimlik gemi
             # tabloda mevcut mu degil mi
             while i < 2:
@@ -90,10 +97,12 @@ try:
             ikiBirimlikGemi()
 
 
+
     def birBirimlikGemi():
         i = 0
         a = randomIndex(10)
         b = randomIndex(10)
+
         if [a, b] not in doluOlanlar:
             # random olarak yerlestirilen bir birimlik gemi
             # tabloda mevcut mu degil mi
@@ -102,6 +111,7 @@ try:
                 i += 1
         else:
             birBirimlikGemi()
+
 
 
     a = 0
@@ -178,7 +188,7 @@ try:
     for i in doluOlanlar:
         # kullanici kaybettigi icin, tabloda gemilerin yerlerini gosteriyoruz
         tablo[i[0]][i[1]] = strJa
-        print(i)
+
     for i in yanlisHamleler:
         # kullanicinin iskaladigi noktalari gosteriyoruz
         tablo[i[0]][i[1]] = strNee
