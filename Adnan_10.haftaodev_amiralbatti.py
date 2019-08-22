@@ -1,6 +1,21 @@
 import random
 import time
 
+aciklama=""" Bu bir amiral batti oyunu olup:
+       Oyunda 2 adet dort birimlik 
+              2 adet 3 birimlik
+              2 adet 2 birimlik
+              2 adet 1 birimlik
+       gemiler yatay yada dikey eksende konumlandirilmistir.
+       Oyunda sizden gemilerin yerini tahmin etmeniz istenmektedir.
+       Eger gemiyi vurursaniz X vuramazsaniz 0 isereti gorunecektir.
+       Ayrica her deneme oncesinde 5 sn kadar bekleme suresi bulunmakta olup 
+       bu sureye dikkat etmeniz de gerekmektedir.
+       Oyunda 25 yanlis yapma hakkina sahipsiniz.
+
+"""
+print(aciklama)
+
 
 
 tahtaliste=[["___", "___", "___","___", "___", "___","___", "___", "___","___"],
@@ -232,7 +247,7 @@ def giriskontrol():
     dogru=[]
     yanlis=[]
     sayac=0
-    while sayac<15:
+    while sayac<25:
         tahta()
         print("Lutfen giris yapmadan once 5 saniye bekleyiniz!!!!!! ")
         time.sleep(5)
@@ -243,7 +258,7 @@ def giriskontrol():
             if deger in liste1:
                 if deger in dogru:
                     print("Daha once ayni tahminde bulunmussunuz")
-                    print("{} tahmin hakkiniz kalmistir".format(15 - sayac))
+                    print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
                     continue
                 else:
                     dogru.append(deger)
@@ -257,7 +272,7 @@ def giriskontrol():
                     tahtaliste[int(liste[0])][int(liste[1])]=isaret
                     liste1.sort()
                     dogru.sort()
-                    print("{} tahmin hakkiniz kalmistir".format(15 - sayac))
+                    print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
                     if dogru==liste1:
                         print("Tebrik ederiz tum gemileri vurdunuz")
                         quit()
@@ -266,13 +281,13 @@ def giriskontrol():
             else:
                 if deger in yanlis:
                     print("Daha once ayni tahminde bulunmussunuz")
-                    print("{} tahmin hakkiniz kalmistir".format(15 - sayac))
+                    print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
                     continue
                 else:
 
                     sayac+=1
                     print("Malesef yanlis bir tahminde bulundunuz")
-                    print("{} tahmin hakkiniz kalmistir".format(15-sayac))
+                    print("{} tahmin hakkiniz kalmistir".format(25-sayac))
                     yanlis.append(deger)
                     liste = []
                     deger = str(deger)
@@ -286,7 +301,7 @@ def giriskontrol():
             continue
         else:
             print("yanlis deger girdiniz lutfen tekrar giriniz:\t")
-            print("{} tahmin hakkiniz kalmistir".format(15 - sayac))
+            print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
             continue
     print("Malesef tum haklarinizi kullandiniz. Tekrar deneyiniz")
     quit()
