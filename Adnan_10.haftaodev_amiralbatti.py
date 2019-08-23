@@ -404,7 +404,28 @@ def giriskontrol():
             print("yanlis deger girdiniz lutfen tekrar giriniz:\t")
             print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
             continue
-    print("Malesef tum haklarinizi kullandiniz. Tekrar deneyiniz")
+    listekume=set(liste1)
+    dogrukume=set(dogru)
+    fark=list(listekume.difference(dogrukume))
+    print("""Malesef tum haklarinizi kullandiniz 5 sn sonra ekranda 
+          Yanlis oynamis oldugunuz yerler icin "0" 
+          Dogru bildiginiz yerler icin "X" 
+          Tahmin edemediginiz geminin diger yerleri icin "Y" isaretini goreceksiniz""")
+    time.sleep(2)
+    for i in fark:
+        listefark=[]
+        listefark.append(i)
+        uzunluk=str(i)
+        if len(uzunluk)==1:
+            listefark.insert(0,0)
+            isaretfark= "Y".center(3)
+            tahtaliste[int(listefark[0])][int(listefark[1])] = isaretfark
+        else:
+            donusum=str(listefark)
+            isaretfark = "Y".center(3)
+            tahtaliste[int(donusum[1])][int(donusum[2])] = isaretfark
+            continue
+    tahta()
     quit()
 
 giriskontrol()
