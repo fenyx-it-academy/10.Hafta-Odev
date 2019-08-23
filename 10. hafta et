@@ -1,0 +1,79 @@
+from random import randint
+from time import sleep
+sayac = 0
+tablo = []
+puan = 250
+for i in range(5):
+    tablo.append(['0']*5)
+def print_tablo(tablo):
+    for satir in tablo:
+        print (" ".join(satir))
+def rand(tablo):
+    return randint(1, len(tablo)-1)
+print("-" * 50)
+print("Amiral Battı Oyunu Basliyor")
+print("-" * 50)
+print("Puanınız:", puan)
+print("-" * 50)
+print_tablo(tablo)
+gemi_satir = rand(tablo)
+gemi_sutun = rand(tablo)
+gemi1_satir = rand(tablo)
+gemi1_sutun = rand(tablo)
+gemi2_satir = rand(tablo)
+gemi2_sutun = rand(tablo)
+while True:
+    if(gemi_satir == gemi1_satir and gemi_sutun == gemi1_sutun):
+        gemi1_satir = rand(tablo)
+        gemi1_sutun = rand(tablo)
+        continue
+    elif (gemi_satir == gemi2_satir and gemi_sutun == gemi2_sutun):
+        gemi2_satir = rand(tablo)
+        gemi2_sutun = rand(tablo)
+        continue
+    elif (gemi1_satir == gemi2_satir and gemi1_sutun == gemi2_sutun):
+        gemi2_satir = rand(tablo)
+        gemi2_sutun = rand(tablo)
+        continue
+    else:
+        print("-" * 50)
+        tahmin_satir = int(input("Satır giriniz: "))
+        tahmin_sutun = int(input("Sütun giriniz: "))
+        if (tahmin_satir == gemi_satir and tahmin_sutun == gemi_sutun) \
+            or (tahmin_satir == gemi1_satir and tahmin_sutun == gemi1_sutun) \
+            or (tahmin_satir == gemi2_satir and tahmin_sutun == gemi2_sutun):
+            if tablo[tahmin_satir - 1][tahmin_sutun - 1] == "/":
+                print("-" * 50)
+                print("Zaten tahmin ettiniz")
+                print_tablo(tablo)
+                print(puan)
+            else:
+                print("-" * 50)
+                print("Tebrikler gemiyi batırdınız!")
+                tablo[tahmin_satir - 1][tahmin_sutun - 1] = "/"
+                print("Puanınız:", puan)
+                print("-" * 50)
+                print_tablo(tablo)
+                sayac += 1
+        else:
+            if (tahmin_satir < 0 or tahmin_sutun < 0) or (tahmin_satir > 5 or tahmin_sutun > 5):
+                print("-" * 50)
+                print("Alan sınırları dışında değer girdiniz")
+            elif tablo[tahmin_satir - 1][tahmin_sutun - 1] == "X":
+                print("-" * 50)
+                print("Zaten tahmin ettiniz")
+                print("-" * 50)
+                print_tablo(tablo)
+            else:
+                print("-" * 50)
+                print("Vuramadınız")
+                tablo[tahmin_satir - 1][tahmin_sutun - 1] = "X"
+                puan -= 10
+                print("Puanınız:", puan)
+                print("-" * 50)
+                print_tablo(tablo)
+                if sayac == 3:
+                    print("-" * 50)
+                    print("Tebrikler bütün gemileri batırdınız ve oyunu kazandınız")
+                    print("-" * 50)
+                    break
