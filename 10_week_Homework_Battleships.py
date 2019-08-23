@@ -35,7 +35,7 @@ def winning_criteria(args):
     return count
 number_of_trials=0
 count=winning_criteria(game_table1)
-while True:
+while number_of_trials<15:
     count1=winning_criteria(game_table)
     if count==count1:
         print("Congratulations, You win!!!\nYou destroyed all ships")
