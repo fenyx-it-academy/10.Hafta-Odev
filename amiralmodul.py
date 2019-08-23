@@ -28,10 +28,10 @@ def gorunen(grnn):                              #her bir satirin kutucuk numaral
     yazdir(80, grnn)
     yazdir(90, grnn)
 
-
+from amiralrandomcozum import*
 #simdilik cozum alttaki gibi olsun
-cozum = ['00', '05', '06', '07', '19', '22', '29', '32', '39', '42',
-       '55', '56', '57', '70', '81', '82', '83', '84', '96', '97']
+#cozum = ['00', '05', '06', '07', '19', '22', '29', '32', '39', '42',
+#      '55', '56', '57', '70', '81', '82', '83', '84', '96', '97']
 
 def cozumtablosu():                 #15 hakkini bitirip oyunu bitiren oyuncuya cozumu gosterir
     tson = tabloilk().copy()
