@@ -9,7 +9,7 @@ aciklama=""" Bu bir amiral batti oyunu olup:
        gemiler yatay yada dikey eksende konumlandirilmistir.
        Oyunda sizden gemilerin yerini tahmin etmeniz istenmektedir.
        Eger gemiyi vurursaniz X vuramazsaniz 0 isereti gorunecektir.
-       Ayrica her deneme oncesinde 5 sn kadar bekleme suresi bulunmakta olup 
+       Ayrica yanlis tahmin yada tekrar eden deneme oncesinde 5 sn kadar bekleme suresi bulunmakta olup 
        bu sureye dikkat etmeniz de gerekmektedir.
        Oyunda 25 yanlis yapma hakkina sahipsiniz.
 """
@@ -336,8 +336,6 @@ def giriskontrol():
     sayac=0
     while sayac<25:
         tahta()
-        print("Lutfen giris yapmadan once 5 saniye bekleyiniz!!!!!! ")
-        time.sleep(2)
         harf = input("Lutfen oynamak istediginiz yeri 'D6' seklinde seciniz:\t")
         harf=harf.upper()
 
@@ -345,12 +343,14 @@ def giriskontrol():
             if harf[2] in ["0"]:
                 pass
             else:
-                print("yanlis bir deger girdiniz lutfen tekrar giriniz")
+                print("yanlis bir deger girdiniz lutfen biraz bekleyip tekrar giriniz")
                 print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+                time.sleep(2)
                 continue
         elif len(harf)<2:
-            print("yanlis bir deger girdiniz lutfen tekrar giriniz")
+            print("yanlis bir deger girdiniz lutfen biraz bekleyip tekrar giriniz")
             print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+            time.sleep(2)
             continue
         else:
             pass
@@ -358,8 +358,9 @@ def giriskontrol():
             deger=tahtasozluk.get(harf)
             if deger in liste1:
                 if deger in dogru:
-                    print("Daha once ayni tahminde bulunmussunuz")
+                    print("Daha once ayni tahminde bulunmussunuz lutfen biraz bekleyip tekrar giriniz")
                     print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+                    time.sleep(2)
                     continue
                 else:
                     dogru.append(deger)
@@ -381,14 +382,16 @@ def giriskontrol():
                         continue
             else:
                 if deger in yanlis:
-                    print("Daha once ayni tahminde bulunmussunuz")
+                    print("Daha once ayni tahminde bulunmussunuz kutfen biraz bekleyip tekrar giriniz")
                     print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+                    time.sleep(2)
                     continue
                 else:
 
                     sayac+=1
-                    print("Malesef yanlis bir tahminde bulundunuz")
+                    print("Malesef yanlis bir tahminde bulundunuz lutfen biraz bekleyiniz")
                     print("{} tahmin hakkiniz kalmistir".format(25-sayac))
+                    time.sleep(2)
                     yanlis.append(deger)
                     liste = []
                     deger = str(deger)
@@ -401,8 +404,9 @@ def giriskontrol():
                     continue
             continue
         else:
-            print("yanlis deger girdiniz lutfen tekrar giriniz:\t")
+            print("yanlis deger girdiniz lutfen biraz bekleyip tekrar giriniz:\t")
             print("{} tahmin hakkiniz kalmistir".format(25 - sayac))
+            time.sleep(2)
             continue
     listekume=set(liste1)
     dogrukume=set(dogru)
