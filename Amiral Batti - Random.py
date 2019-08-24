@@ -107,9 +107,9 @@ def birim2_2():  # 2 birimlik 2li gemi icin
       continue
 
 def birim2_1():  # 1 birimlik 2 gemi icin
-  rastgele=random.sample(tablo[1:8][1:8],2)  
+  rastgele=random.sample(tablo[1:8][1:8],2)
   in1=tablo.index(rastgele[0])
-  in2=tablo.index(rastgele[1])  
+  in2=tablo.index(rastgele[1])
   while True:
     ind1=random.randint(1,10)
     ind2=random.randint(1,10)
@@ -128,9 +128,9 @@ def kontrol(tablo):
 hak=15
 print("""Amiral Batti Oyununa Hosgeldiniz...
 Tabloda;
-4 birimlik 2 gemi,
-3 birimlik 2 gemi,
-2 birimlik 2 gemi ve
+4 birimlik 2 gemi(yatay ve dikey),
+3 birimlik 2 gemi(yatay ve dikey),
+2 birimlik 2 gemi(yatay ve dikey) ve
 1 birimlik 2 gemi bulunmaktadir. 
 Hedefleri harf ve sayilari kullanarak secebilirsiniz.
 15 deneme hakkiniz vardir.

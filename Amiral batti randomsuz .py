@@ -24,8 +24,7 @@ tablo2=[
       ["I",0,0,0,0,1,0,0,0,0,0],
       ["J",0,0,1,1,1,0,0,0,0,0]
       ]
-# check \u2713
-# cross \u2717
+
 def tablo_goster():
   for i in tablo:
     print("\t".expandtabs(30),*i,end="\n"*2)
@@ -49,19 +48,19 @@ Her yanlis hedefte hakkiniz 1 azalmaktadir..
 Basarilar...""")
 while True:
   tablo_goster()
-  try:
+  try:                                              #deger hatalarini onlemek icin 
     satir=int(input("Satir Secimi(1-10):"))
     sutun=input("Sutun Secimi(A-J):").upper()
-    if satir>10 or satir<1:
+    if satir>10 or satir<1:                         # satirlar 1 10 arasi deger kontrolu 
       print("Yanlis secim yaptiniz")
       continue
-    if not sutun in "ABCDEFGHIJ":
+    if not sutun in "ABCDEFGHIJ":                   # sutunlar A-J arasi deger kontrolu
        print("Yanlis secim yaptiniz")
        continue
   except ValueError:
     print("Yanlis tercih yaptiniz.")
     continue
-  satir=int(satir)
+  satir=int(satir) 
   sutun_dic={"A":1,"B":2,"C":3,"D":4,"E":5,"F":6,"G":7,"H":8,"I":9,"J":10}
   if tablo2[sutun_dic[sutun]][satir]=="X":     # Yani daha once isaretlenmisse
     print("Daha once bu degeri girmistiniz...")
@@ -72,6 +71,9 @@ while True:
     tablo[sutun_dic[sutun]][satir]="X"
     tablo2[sutun_dic[sutun]][satir]="X"
     hak -= 1
+    print("Yanlis hamle...5 sn bekleyin..")
+    if hak!=0:
+      print(hak,"hakkiniz kaldi...")
     time.sleep(5)
 
   if kontrol(tablo)==20:
