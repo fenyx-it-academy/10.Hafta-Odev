@@ -43,15 +43,11 @@ while number_of_trials<15:
         break
     try:
         while True:
-            print("Please enter a number from 1 to 10 (from top to bottom)\nPlease think about 5 seconds...")
-            time.sleep(5)
-            x=int(input("Please be careful!!! Now, please enter a number "))
+            x=int(input("Please enter a number from 1 to 10 (from top to bottom): ")
             if x>10 or x<1:
                 print("You made an incorrect entry. Please enter a number from 1 to 10 !!!\n")
                 continue
-            print("Please enter a number from 1 to 10 (from left to right)\nPlease think about 5 seconds...")
-            time.sleep(5)
-            y=int(input("Please be careful!!! Now, please enter a number "))
+            y=int(input("Please enter a number from 1 to 10 (from left to right): ")
             if y>10 or y<1:
                 print("You made an incorrect entry. Please enter a number from 1 to 10 !!!\n")
                 continue
@@ -64,6 +60,7 @@ while number_of_trials<15:
         number_of_trials += 1
         print("Remaining trial is:", 15 - number_of_trials)
         print_gtable(game_table)
+        time.sleep(5)
     elif game_table1[x][y]=="*4*":
         print("\n***Congratulations***, you hit a 4-unit ship!!!\n")
         game_table[x][y]=game_table1[x][y]
@@ -86,7 +83,7 @@ while number_of_trials<15:
         number_of_trials+=1
         print("Remaining trial is:", 15 - number_of_trials)
         print_gtable(game_table)
-
+        time.sleep(5)
 if number_of_trials==15:
     print("You have used 15 trials and You could not destroy all ships!!!\nYOU LOST!!!\nThis is the starting table of the game where all the ships are placed!!!\n")
     print_gtable(game_table1)
