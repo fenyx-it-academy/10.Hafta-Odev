@@ -337,8 +337,3 @@ gameBoardMaker()
 gameBoardPrinter(ocean)
 shipMaker(shipPositionList)
 gamePlay(ocean, shipsHit)
-
-
-'''gameBoardPrinterDeneme(ocean, shipPositionList)
-
-gameBoardPrinter(ocean)'''
