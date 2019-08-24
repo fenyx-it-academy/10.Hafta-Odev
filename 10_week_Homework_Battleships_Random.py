@@ -138,11 +138,11 @@ while number_of_trials<15:
         break
     try:
         while True:
-            x=int(input("Please enter a number from 1 to 10 (from top to bottom): ")
+            x=int(input("Please enter a number from 1 to 10 (from top to bottom): "))
             if x>10 or x<1:
                 print("You made an incorrect entry. Please enter a number from 1 to 10 !!!\n")
                 continue
-            y=int(input("Please enter a number from 1 to 10 (from left to right): ")
+            y=int(input("Please enter a number from 1 to 10 (from left to right): "))
             if y>10 or y<1:
                 print("You made an incorrect entry. Please enter a number from 1 to 10 !!!\n")
                 continue
