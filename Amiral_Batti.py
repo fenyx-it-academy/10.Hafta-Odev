@@ -13,75 +13,50 @@ BONUS(ISTEGE BAGLI): Yukaridaki versiyonda gemiler sabit. Oyunu her actigimizda 
 import random
 import time
 tablo=[["O" for i in range(0,10) ] for j in range(0,10)]
-gemiler=[]
+tahta = [(a, b) for a in range(10) for b in range(10)]
+
+def random_gemi_bulma(gemi,adet):
+    tahmin = []
+    yerlesim = []
+    for i in range(adet):
+        for i in gemi:
+            if set(i).issubset(set(tahta)):
+                tahmin += [i]
+        if tahmin != []:
+            tahmin = random.choice(tahmin)
+            for a in tahmin:
+                tahta.remove(a)
+            yerlesim += [tahmin]
+            tahmin = []
+    return yerlesim
+
+def gemi_kordinatlari(uzunluk):
+    koordinatlar=[]
+    for i in range(10-uzunluk+1):
+        for j in range(10):
+            gecici_yatay = []
+            gecici_dikey = []
+            for k in range(uzunluk):
+                k = k + i
+                gecici_yatay += [(j, k)]
+                gecici_dikey += [(k, j)]
+            koordinatlar += [gecici_yatay]
+            koordinatlar+=[gecici_dikey]
+    return koordinatlar
+
 def gemi_olusturma():
-    gemi_tablosu = [[[i,j] for j in range(0,10)] for i in range(0,10)]
-    dort_birimlik_gemiler = []
-    uc_birimlik_gemiler = []
-    iki_birimlik_gemiler = []
-    bir_birimlik_gemiler = []
-    for j in range(0, 2):
-        a = random.randint(0, 4)
-        for i in range(4):
-                b=0
-                kordinat=gemi_tablosu[a][b]
-                b+=1
-                dort_birimlik_gemiler.append(kordinat)
-                k=-1
-                for l in gemi_tablosu:
-                    k += 1
-                    for j in l:
-                        if j == kordinat:
-                           gemi_tablosu[k].remove(j)
-        a = random.randint(0, 3)
-        for i in range(3):
-                b=0
-                kordinat=gemi_tablosu[a][b]
-                b+=1
-                uc_birimlik_gemiler.append(kordinat)
-                k = -1
-                for l in gemi_tablosu:
-                    k += 1
-                    for j in l:
-                        if j == kordinat:
-                            gemi_tablosu[k].remove(j)
-        a = random.randint(4, 7)
-        for i in range(2):
-                b=0
-                kordinat=gemi_tablosu [a][b]
-                b += 1
-                iki_birimlik_gemiler.append(kordinat)
-                k = -1
-                for l in gemi_tablosu:
-                    k += 1
-                    for j in l:
-                        if j == kordinat:
-                            gemi_tablosu[k].remove(j)
-        for i in range(1):
-                a = random.randint(6,8)
-                kordinat=gemi_tablosu[a][i]
-                bir_birimlik_gemiler.append(kordinat)
-                k = -1
-                for l in gemi_tablosu:
-                    k += 1
-                    for j in l:
-                        if j == kordinat:
-                            gemi_tablosu[k].remove(j)
-
-    gemiler.append(dort_birimlik_gemiler[0:4])
-    gemiler.append(dort_birimlik_gemiler[4:8])
-    gemiler.append(uc_birimlik_gemiler[0:3])
-    gemiler.append(uc_birimlik_gemiler[3:6])
-    gemiler.append(iki_birimlik_gemiler[0:2])
-    gemiler.append(iki_birimlik_gemiler[2:4])
-    gemiler.append(bir_birimlik_gemiler[0:1])
-    gemiler.append(bir_birimlik_gemiler[1:2])
+    gemiler=[]
+    gemiler +=[random_gemi_bulma(gemi_kordinatlari(4), 2)]
+    gemiler +=[random_gemi_bulma(gemi_kordinatlari(3), 2)]
+    gemiler +=[random_gemi_bulma(gemi_kordinatlari(2), 2)]
+    gemiler +=[random_gemi_bulma(gemi_kordinatlari(1), 2)]
     return gemiler
-
+gemiler=gemi_olusturma()
+k = -1
+c = 0
 hamle_koordinat = []
 counter=0
 batan_gemiler=[]
-
 def hamle_kontrol(x):
     if [x[0],x[1]] not in hamle_koordinat:
         hamle_koordinat.append([x[0],x[1]])
@@ -96,19 +71,22 @@ def hamle():
     y = int(input("     Soldan saga (1 den 10 a kadar):"))
     x = x - 1
     y = y - 1
+
     return [x, y]
 
 def gemi_batirma(x):
     for i in gemiler:
         for j in i:
-            if j==[x[0],x[1]]:
-                gemiler.pop(gemiler.index(i))
-                return i# gonderilen kordinatlar listede varsa gemiye rastgelmistir.ve geminin kordinatlari donulur
+            for k in j:
+                if list(k)==[x[0],x[1]]:
+                    print(j)
+                    return j# gonderilen kordinatlar listede varsa gemiye rastgelmistir.ve geminin kordinatlari donulur
     return 1
 
 def gemiyi_goster(a):
     for i in a:
-        tablo[i[0]][i[1]] = "X"#gonderilen kordinatlardaki harfler X ile degistirilir
+            i=list(i)
+            tablo[i[0]][i[1]] = "X"#gonderilen kordinatlardaki harfler X ile degistirilir
     for i in tablo:
         print("                      "," ".join(i))
 
@@ -126,6 +104,7 @@ print("""         ------------AMIRAL BATTI OYUNU------------
          -Toplam 15 yanlis hakkiniz bulunmaktadir--
          ---------------BASARILAR------------------         
 """)
+
 try:
     a=gemi_olusturma()#random gemi olusturuluyor
 except:
@@ -134,12 +113,14 @@ except:
 batan_gemi_sayisi=0
 while True:
     print("Kalan yanlis hamle sayiniz:", 15-counter)
-    if len(a)>=1:
+    if batan_gemi_sayisi<8:
         if counter==15:#15 hak dolma kontrolu
-            print("15 hamle hakkiniz doldu. Oyunu kaybettiniz.\nBulunamayan gemiler Y harfi ile gosterilmistir.")
+            print("15 hamle hakkiniz doldu. Oyunu kaybettiniz.")
             for i in gemiler:
                 for j in i:
-                    tablo[j[0]][j[1]] = "Y"# 15 hak dolduktan sonra bulunamayan gemiler Y harfi ile gosteriliyor.
+                    for k in j:
+                        k=list(k)
+                        tablo[k[0]][k[1]] = "X"# 15 hak dolduktan sonra bulunamayan gemiler Y harfi ile gosteriliyor.
             for i in tablo:
                 print("                      ", " ".join(i))
             break
