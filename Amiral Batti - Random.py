@@ -34,113 +34,75 @@ def tablo_goster():
 
 
 
-def birim2_4():  # 4 birimlik 2 gemi icin 
-  rastgele=random.sample(tablo[1:8][1:8],2)  #2 rastgele liste sectik
-  in1=tablo.index(rastgele[0])    #Ilk listenin indexi 
-  in2=tablo.index(rastgele[1])    #Ikinci listenin indexi 
-  
-  while True:   # Eger tablo2de in1 sutunu ve sonrasinda gelen 4 satir 0 ise
-    ind2=random.randint(1,7)        # Sutun icin 1 7 arasinda rastgele sayi tuttuk (Yatay gemi olusturmak icin)
-    if tablo2[in1][ind2]==0 and tablo2[in1][ind2+1]==0 and tablo2[in1][ind2+2]==0 and tablo2[in1][ind2+3]==0: # Sutun degerlerini artirdik 
-      tablo2[in1][ind2]=1   # gemileri sectik
-      tablo2[in1][ind2+1]=1
-      tablo2[in1][ind2+2]=1
-      tablo2[in1][ind2+3]=1
-      break                  # donguden cikiyoruz 
-    else:
-      continue               # degilse donguye devam et 
-  
-  while True:
-    ind2=random.randint(1,7)   # Satir icin 1 7 arasinda rastgele sayi tuttuk   (Dikey gemi olusturmak icin)
-    if tablo2[in2][ind2]==0 and tablo2[in2+1][ind2]==0 and tablo2[in2+2][ind2]==0 and tablo2[in2+3][ind2]==0:  # Satir degerlerini artirdik
-      tablo2[in2][ind2]=1
-      tablo2[in2+1][ind2]=1
-      tablo2[in2+2][ind2]=1
-      tablo2[in2+3][ind2]=1
-      break
-    else:
-      continue
+def birim(birimsayisi):   
+  for i in range(2):   # 2 tane istenilen birimde olusturmasi icin for dongusu kurduk 
+    rastgele_yatay_dikey=random.choice(["yatay","dikey"])          # yatay dikey mi olacagini rastgele sectik
+    if rastgele_yatay_dikey=="yatay":    #yataysa 
+      while True: 
+        kontrol=0    
+        rastgele=random.sample(tablo2[1:],1)  #1 rastgele liste sectik
+        satirindex=tablo2.index(rastgele[0])    #Listenin indexi
+        sutunindex=random.randint(1,len(tablo2)-birimsayisi)        # Sutun icin 1 tablonun uzunlugunun birimsayisi eksigince rastgele index sectik
+        for x in range(birimsayisi):
+          if tablo2[satirindex][sutunindex+x]==0:
+            kontrol+=1
+        if kontrol==birimsayisi:
+          for y in range(birimsayisi):
+            tablo2[satirindex][sutunindex+y]=1
+          break                      # tabloya gemileri yerlestirdik 
+        else:                                                       # degilse yani onceden secilmis herhangi bir gemi ile cakisiyorsa 
+          continue                                                  # ayni islemleri tekrar yapmasi icin dongunun basina dondu 
+    else:    # dikeyse 
+      while True:
+        kontrol=0
+        rastgele=random.sample(tablo2[1:(len(tablo2)-birimsayisi)+1],1)  #1 rastgele liste sectik
+        satirindex=tablo2.index(rastgele[0])    #Listenin indexi
+        sutunindex=random.randint(1,10)
+        for x in range(birimsayisi):
+          if tablo2[satirindex+x][sutunindex]==0:
+            kontrol+=1
+        if kontrol==birimsayisi:
+          for y in range(birimsayisi):
+            tablo2[satirindex+y][sutunindex]=1
+          break
+        else:
+          continue    
 
-def birim2_3():   # 3 birimlik 2 gemi icin
-  rastgele=random.sample(tablo[1:8][1:8],2)  #2 liste sectir
-  in1=tablo.index(rastgele[0])
-  in2=tablo.index(rastgele[1])
-  while True: 
-    ind2=random.randint(1,8)
-    if tablo2[in1][ind2]==0 and tablo2[in1][ind2+1]==0 and tablo2[in1][ind2+2]==0:
-      tablo2[in1][ind2]=1
-      tablo2[in1][ind2+1]=1
-      tablo2[in1][ind2+2]=1
-      break
-    else:
-      continue
-  while True:
-    ind2=random.randint(1,8)
-    if tablo2[in2][ind2]==0 and tablo2[in2+1][ind2]==0 and tablo2[in2+2][ind2]==0:
-      tablo2[in2][ind2]=1
-      tablo2[in2+1][ind2]=1
-      tablo2[in2+2][ind2]=1
-      break
-    else:
-      continue
 
-def birim2_2():  # 2 birimlik 2li gemi icin 
-  rastgele=random.sample(tablo[1:8][1:8],2)  #2 liste sectir
-  in1=tablo.index(rastgele[0])
-  in2=tablo.index(rastgele[1])  
-  while True:
-    ind2=random.randint(1,10)
-    if tablo2[in1][ind2]==0 and tablo2[in1][ind2+1]==0:
-      tablo2[in1][ind2]=1
-      tablo2[in1][ind2+1]=1
-      break
-    else:
-      continue
-  
-  while True:
-    ind2=random.randint(1,10)
-    if tablo2[in2][ind2]==0 and tablo2[in2+1][ind2]==0:
-      tablo2[in2][ind2]=1
-      tablo2[in2+1][ind2]=1
-      break
-    else:
-      continue
-
-def birim2_1():  # 1 birimlik 2 gemi icin
-  rastgele=random.sample(tablo[1:8][1:8],2)
-  in1=tablo.index(rastgele[0])
-  in2=tablo.index(rastgele[1])
-  while True:
-    ind1=random.randint(1,10)
-    ind2=random.randint(1,10)
-    if tablo2[in1][ind1]==0 and tablo2[ind2][in2]==0:
-      tablo2[in1][ind1]=1
-      tablo2[ind2][in1]=1
-      break
-    else:
-      continue
-
-def kontrol(tablo):
+def kontroll(tablo):
   kontrol=[x for i in tablo for x in i if x=="\U0001F6A2"]
   return len(kontrol)
+
+def cozum_tablosu():
+  print("Gemi Tablosunu ve Yanlis hedef vuruslarinizi gorebilirsiniz...")
+  liste=[]
+  for satir in tablo2[1:]:
+    satir2 = ["+" if item == 1 else item for item in satir]
+    liste+=[satir2]
+      
+  for x in liste:
+    print("\t".expandtabs(30),*x,end="\n"*2)
 
 
 hak=15
 print("""Amiral Batti Oyununa Hosgeldiniz...
 Tabloda;
-4 birimlik 2 gemi(yatay ve dikey),
-3 birimlik 2 gemi(yatay ve dikey),
-2 birimlik 2 gemi(yatay ve dikey) ve
+4 birimlik 2 gemi,
+3 birimlik 2 gemi,
+2 birimlik 2 gemi ve
 1 birimlik 2 gemi bulunmaktadir. 
+Hedefi vuramadiginizda X,
+vurdugunuzda + isareti ile tabloda gorebileceksiniz.
 Hedefleri harf ve sayilari kullanarak secebilirsiniz.
 15 deneme hakkiniz vardir.
 Her yanlis hedefte hakkiniz 1 azalmaktadir..
 
 Basarilar...""")
-birim2_4()
-birim2_3()
-birim2_2()
-birim2_1()
+birim(4)
+birim(3)
+birim(2)
+birim(1)
+gemi=0
 while True:
     tablo_goster()
     try:
@@ -157,12 +119,14 @@ while True:
         continue
     satir=int(satir)
     sutun_dic={"A":1,"B":2,"C":3,"D":4,"E":5,"F":6,"G":7,"H":8,"I":9,"J":10}
+    
     if tablo2[sutun_dic[sutun]][satir]=="X":     # Yani daha once isaretlenmisse
         print("Daha once bu degeri girmistiniz...")
         continue
     if tablo2[sutun_dic[sutun]][satir]==1 and tablo[sutun_dic[sutun]][satir]==0:     # Gemilerin oldugu yerse ve ilk tabloda bossa
-        tablo[sutun_dic[sutun]][satir]="\U0001F6A2"
+        tablo[sutun_dic[sutun]][satir]="+"
         print("Gemi vuruldu...")
+        gemi+=1
     if tablo2[sutun_dic[sutun]][satir]==0 and tablo[sutun_dic[sutun]][satir]==0:     # Gemilerin olmadigi yerde ise ve tabloda daha once isaretlenmemisse
         tablo[sutun_dic[sutun]][satir]="X"
         tablo2[sutun_dic[sutun]][satir]="X"
@@ -173,11 +137,15 @@ while True:
         time.sleep(5)
 
 
-    if kontrol(tablo)==20:
+    if kontroll(tablo)==20:
         print("Tebrikler....Kazandiniz..")
+        print(gemi,"tane gemiyi vurdunuz...:))")
+        cozum_tablosu()
         break
     if hak==0:
         print("Hakkiniz kalmadi oyunu kaybettiniz...")
+        print("Ama",gemi," tane gemiyi vurdunuz..")
+        cozum_tablosu()
         break
 
   
