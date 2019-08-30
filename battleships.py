@@ -1,6 +1,6 @@
 from random import randint,choice
 
-table = [["__" for i in range(10)] for i in range(10)]
+table = [["--" for i in range(10)] for i in range(10)]
 
 all_coor = [[a, b] for a in range(10) for b in range(10)]
 
@@ -187,7 +187,7 @@ try:
                     counter += 1
         if counter == 20:
             print_table()
-            print("\nCongratulations.You hit the each ships.")
+            print("\nCongratulations.You've hit the each ships.")
             break
 except ValueError:
     print("Please try again and enter a number")
