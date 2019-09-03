@@ -29,11 +29,11 @@ BONUS(ISTEGE BAGLI): Yukaridaki versiyonda gemiler sabit. Oyunu her actigimizda 
 from functools import reduce
 from random import randint
 from time import sleep
-
-deniz = []
-kayitliGemiler = []
-kullaniciHakki = 15
-bilinenGemiler = []
+class oyun():
+    deniz = []
+    kayitliGemiler = []
+    kullaniciHakki = 15
+    bilinenGemiler = []
 
 
 def denizOlustur():
@@ -181,6 +181,7 @@ def bilgilendirmeVeKontrol():
     if not gemiVarMi([satir, sutun]):
         print('Isabet ettiremediniz!!!')
         kullaniciHakki = kullaniciHakki - 1
+        deniz[satir][sutun] = ' '
         sleep(2)
     else:
         if [satir, sutun] in bilinenGemiler:
