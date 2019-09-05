@@ -24,80 +24,168 @@ game_table1 = [["    "," 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 ","10
 ["10  ","___", "___", "___","___", "___", "___","___", "___", "___","___"],]
 print("\n"*3)
 def ships_4():
-    a=random.randint(1,10)
-    b=random.randint(0,6)
-    for i in range (1,5):
-        b+=1
-        game_table1[a][b]="*4*"
-    count=1
-    while count<5:
-        c=random.randint(1,10)
-        d=random.randint(0,6)
+    w=random.randint(1,2)
+    if w==1:
+        a=random.randint(1,10)
+        b=random.randint(0,6)
+        for i in range (1,5):
+            b+=1
+            game_table1[a][b]="*4*"
+    else:
+        a = random.randint(0,6)
+        b = random.randint(1,10)
+        for i in range(1, 5):
+            a += 1
+            game_table1[a][b] = "*4*"
+    z=random.randint(1,2)
+    if z==1:
+        count=1
+        while count<5:
+            c=random.randint(1,10)
+            d=random.randint(0,6)
+            for i in range(1,5):
+                d+=1
+                if game_table1[d][c]=="___":
+                    count+=1
+                else:
+                    break
         for i in range(1,5):
-            d+=1
-            if game_table1[d][c]=="___":
-                count+=1
-            else:
-                break
-    for i in range(1,5):
-        game_table1[d][c]="*4*"
-        d-=1
+            game_table1[d][c]="*4*"
+            d-=1
+    else:
+        count = 1
+        while count < 5:
+            c = random.randint(0,6)
+            d = random.randint(1,10)
+            for i in range(1, 5):
+                c += 1
+                if game_table1[d][c] == "___":
+                    count += 1
+                else:
+                    break
+        for i in range(1, 5):
+            game_table1[d][c] = "*4*"
+            c -= 1
     return game_table1
 def ships_3():
-    count=1
-    while count<4:
-        a=random.randint(1,10)
-        b=random.randint(0,6)
+    w=random.randint(1,2)
+    if w==1:
+        count=1
+        while count<4:
+            a=random.randint(1,10)
+            b=random.randint(0,6)
+            for i in range(1,4):
+                b+=1
+                if game_table1[a][b]=="___":
+                    count+=1
+                else:
+                    break
         for i in range(1,4):
-            b+=1
-            if game_table1[a][b]=="___":
-                count+=1
-            else:
-                break
-    for i in range(1,4):
-        game_table1[a][b]="*3*"
-        b-=1
-    count=1
-    while count<4:
-        c=random.randint(1,10)
-        d=random.randint(0,6)
+            game_table1[a][b]="*3*"
+            b-=1
+    else:
+        count = 1
+        while count < 4:
+            a = random.randint(0, 6)
+            b = random.randint(1, 10)
+            for i in range(1, 4):
+                a += 1
+                if game_table1[a][b] == "___":
+                    count += 1
+                else:
+                    break
+        for i in range(1, 4):
+            game_table1[a][b] = "*3*"
+            a -= 1
+    z=random.randint(1,2)
+    if z==1:
+        count=1
+        while count<4:
+            c=random.randint(1,10)
+            d=random.randint(0,6)
+            for i in range(1,4):
+                d+=1
+                if game_table1[c][d]=="___":
+                    count+=1
+                else:
+                    break
         for i in range(1,4):
-            d+=1
-            if game_table1[c][d]=="___":
-                count+=1
-            else:
-                break
-    for i in range(1,4):
-        game_table1[c][d]="*3*"
-        d-=1
+            game_table1[c][d]="*3*"
+            d-=1
+    else:
+        count = 1
+        while count < 4:
+            c = random.randint(0,6)
+            d = random.randint(1,10)
+            for i in range(1, 4):
+                c += 1
+                if game_table1[c][d] == "___":
+                    count += 1
+                else:
+                    break
+        for i in range(1, 4):
+            game_table1[c][d] = "*3*"
+            c -= 1
     return game_table1
 def ships_2():
-    count=1
-    while count<3:
-        a=random.randint(1,10)
-        b=random.randint(0,6)
+    w=random.randint(1,2)
+    if w==1:
+        count=1
+        while count<3:
+            a=random.randint(1,10)
+            b=random.randint(0,6)
+            for i in range(1,3):
+                b+=1
+                if game_table1[a][b]=="___":
+                    count+=1
+                else:
+                    break
         for i in range(1,3):
-            b+=1
-            if game_table1[a][b]=="___":
-                count+=1
-            else:
-                break
-    for i in range(1,3):
-        game_table1[a][b]="*2*"
-        b-=1
-    count=1
-    while count<3:
-        c=random.randint(1,10)
-        d=random.randint(0,6)
+            game_table1[a][b]="*2*"
+            b-=1
+    else:
+        count = 1
+        while count < 3:
+            a = random.randint(0,6)
+            b = random.randint(1, 10)
+            for i in range(1, 3):
+                a += 1
+                if game_table1[a][b] == "___":
+                    count += 1
+                else:
+                    break
+        for i in range(1, 3):
+            game_table1[a][b] = "*2*"
+            a -= 1
+    z=random.randint(1,2)
+    if z==1:
+        count=1
+        while count<3:
+            c=random.randint(1,10)
+            d=random.randint(0,6)
+            for i in range(1,3):
+                d+=1
+                if game_table1[d][c]=="___":
+                    count+=1
+                else:
+                    break
         for i in range(1,3):
-            d+=1
-            if game_table1[d][c]=="___":
-                count+=1
-            else:
-                break
-    for i in range(1,3):
-        game_table1[d][c]="*2*"
-        d-=1
+            game_table1[d][c]="*2*"
+            d-=1
+    else:
+        count = 1
+        while count < 3:
+            c = random.randint(0,6)
+            d = random.randint(1,10)
+            for i in range(1, 3):
+                c += 1
+                if game_table1[d][c] == "___":
+                    count += 1
+                else:
+                    break
+        for i in range(1, 3):
+            game_table1[d][c] = "*2*"
+            c -= 1
     return game_table1
 def ships_1():
     while True:
