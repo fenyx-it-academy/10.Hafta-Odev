@@ -8,19 +8,21 @@ def horizontal(unit):
         if coor[0] > 9 - unit:
             coor[0] = 9 - unit
         if coor not in ships:
-            if [coor[0]+1,coor[1]] not in ships:
-                if [coor[0]-1,coor[1]] not in ships:
-                    if [coor[0],coor[1]+1] not in ships:
-                        if [coor[0],coor[1]-1] not in ships:
+            #to check whether 'coor' is besides other ship or not
+            if [coor[0] + 1, coor[1]] not in ships:
+                if [coor[0] - 1, coor[1]] not in ships:
+                    if [coor[0], coor[1] + 1] not in ships:
+                        if [coor[0], coor[1] - 1] not in ships:
                             ship.append(coor)
             
         for i in range(unit-1):
             coor = [coor[0] + 1] + [coor[1]]
             if coor not in ships:
-                if [coor[0]+1,coor[1]] not in ships:
-                    if [coor[0]-1,coor[1]] not in ships:
-                        if [coor[0],coor[1]+1] not in ships:
-                            if [coor[0],coor[1]-1] not in ships:
+                #to check whether 'coor' is besides other ship or not
+                if [coor[0] + 1, coor[1]] not in ships:
+                    if [coor[0] - 1, coor[1]] not in ships:
+                        if [coor[0], coor[1] + 1] not in ships:
+                            if [coor[0], coor[1] - 1] not in ships:
                                 ship.append(coor)
 
         if len(ship) == unit:
@@ -36,19 +38,21 @@ def vertical(unit):
         if coor[1] > 9 - unit:
             coor[1] = 9 - unit
         if coor not in ships:
-            if [coor[0]+1,coor[1]] not in ships:
-                if [coor[0]-1,coor[1]] not in ships:
-                    if [coor[0],coor[1]+1] not in ships:
-                        if [coor[0],coor[1]-1] not in ships:
+            #to check whether 'coor' is besides other ship or not
+            if [coor[0] + 1, coor[1]] not in ships:
+                if [coor[0] - 1, coor[1]] not in ships:
+                    if [coor[0], coor[1] + 1] not in ships:
+                        if [coor[0], coor[1] - 1] not in ships:
                             ship.append(coor)
             
         for i in range(unit-1):
             coor = [coor[0]] + [coor[1] + 1]
             if coor not in ships:
-                if [coor[0]+1,coor[1]] not in ships:
-                    if [coor[0]-1,coor[1]] not in ships:
-                        if [coor[0],coor[1]+1] not in ships:
-                            if [coor[0],coor[1]-1] not in ships:
+                #to check whether 'coor' is besides other ship or not
+                if [coor[0] + 1, coor[1]] not in ships:
+                    if [coor[0] - 1, coor[1]] not in ships:
+                        if [coor[0], coor[1] + 1] not in ships:
+                            if [coor[0], coor[1] - 1] not in ships:
                                 ship.append(coor)
 
         if len(ship) == unit:
@@ -122,7 +126,7 @@ def coordinate():
     global y
     global x
     while True:
-        y = (input("\nPlease choose the y axis:"))
+        y = input("\nPlease choose the y axis:")
         if y.isdigit() == False:
             print("Please enter number between 0 - 10.")
             time = False
@@ -133,8 +137,9 @@ def coordinate():
         if y > 9 or y < 0:
             print("Please enter number between 0 - 10.")
             continue
-        x = (input("\nPlease choose the x axis:"))
-        if x.isdigit == False:
+        
+        x = input("\nPlease choose the x axis:")
+        if x.isdigit() == False:
             print("Please enter number between 0 - 10.")
             time = False
             continue
@@ -184,35 +189,36 @@ def fire():
             table[ship[0]][ship[1]] = "XX"
     return table
 
+def prnt():
+    print("*"*15,"BATTLESHIPS","*"*15)
+    print("""\n           WELCOME TO BATTLESHIPS\n
+    There are 8 ships.Two of them has 4 unit.
+                      Two of them has 3 unit.
+                      Two of them has 2 unit.
+                      Two of them has 1 unit.
+    You can shoot them 15 times.
+    You can choose the coordinates to shoot there.""")
 
-print("*"*15,"BATTLESHIPS","*"*15)
-print("""\n           WELCOME TO BATTLESHIPS\n
-There are 8 ships.Two of them has 4 unit.
-                  Two of them has 3 unit.
-                  Two of them has 2 unit.
-                  Two of them has 1 unit.
-You can shoot them 15 times.
-You can choose the coordinates to shoot there.""")
-
-table = [["--" for i in range(10)] for i in range(10)]
+table = [["--" for a in range(10)] for b in range(10)]
 all_coor = [[a, b] for a in range(10) for b in range(10)]
-#all ships which are deployed
-ships = []
+
+prnt()
+ships = []#all ships which are deployed
 turn = 0
 deploy()
 time = False
 try:
     while True:
-        print_table()
-        coordinate()
-        fire()
-        turn += 1
-
-        if turn == 16:
+        if turn == 15:
             print("Game over.You lose.")
             all_ships()
             print_table()
             break
+        
+        print_table()
+        coordinate()
+        fire()
+        turn += 1
 
         counter = 0
         for items in table:
